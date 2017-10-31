@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace Rextester
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+             HelloWorldApI a=new HelloWorldApI();
+          System.Console.WriteLine(a.getInstance());
+        }
+        
+     public class HelloWorld //singleton helloworld class
+    {
+       private static HelloWorld instance ; 
+       private string displayedText = "Hello World";
+       private HelloWorld() {}
+        
+   public static HelloWorld Instance
+   {
+      get 
+      {
+         if (instance == null)
+         {
+            instance = new HelloWorld();
+         }
+         return instance;
+      }
+   }
+       
+        public string getText(){
+            return displayedText;
+        }
+        
+    }
+    
+public class HelloWorldApI //api to expose the helloworld functionality
+{
+   HelloWorld exposer=HelloWorld.Instance;
+    public HelloWorldApI(){}
+    public String getInstance(){
+       return  exposer.getText();
+    }
+  
+
+  
+}
+   
+    }
+}
